@@ -1,0 +1,40 @@
+{
+  "name": "umhi",
+  "version": "0.2.1",
+  "license": "MIT",
+  "repository": "https://github.com/kevinfiol/umhi",
+  "type": "module",
+  "description": "tiny ui library",
+  "main": "dist/umhi.cjs",
+  "module": "dist/umhi.js",
+  "unpkg": "dist/umhi.min.js",
+  "umd:name": "umhi",
+  "terser": {
+    "mangle": {
+      "properties": {
+        "regex": "(instance|node|props)"
+      }
+    }
+  },
+  "scripts": {
+    "test": "node test/esbuild.js && node test.js",
+    "build": "bundt index.js",
+    "prepare": "npm run build"
+  },
+  "engines": {
+    "node": ">=12.x"
+  },
+  "files": [
+    "*.d.ts",
+    "dist"
+  ],
+  "devDependencies": {
+    "bundt": "1.1.5",
+    "flitch": "0.7.3",
+    "linkedom": "^0.14.26"
+  },
+  "keywords": [
+    "vdom",
+    "ui"
+  ]
+}
