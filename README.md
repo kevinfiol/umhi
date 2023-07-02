@@ -43,7 +43,7 @@ mount(root, App);
 When using `mount`, event handlers defined in your templates will automatically trigger full tree rerenders.
 
 ```js
-const input = '';
+let input = '';
 
 const TextInput = () => (
   m('div',
