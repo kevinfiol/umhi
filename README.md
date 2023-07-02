@@ -25,9 +25,9 @@ const Counter = () => (
 mount(document.body, Counter);
 ```
 
-`umhi` (*pronounced, "um, hi"*) is a refactored version of [umai@0.1.7](https://github.com/kevinfiol/umai). It is even more minimal and stripped down than `umai`.
+`umhi` (*pronounced "um, hi"*) is a refactored version of [umai@0.1.7](https://github.com/kevinfiol/umai).
 
-`umhi` is intended for usecases where you require a declarative user interface API, but don't need any of the bells and whistles provided by larger frameworks. `umhi` is well-suited for userscripts, and is used in [enhanced-gog](https://github.com/kevinfiol/enhanced-gog).
+`umhi` is intended for usecases that require a declarative user interface API, but don't need any of the bells and whistles provided by larger frameworks. `umhi` is well-suited for userscripts due to its aggressively small size, and is used in [enhanced-gog](https://github.com/kevinfiol/enhanced-gog).
 
 ### Mounting
 
@@ -160,3 +160,5 @@ const Book = ({ isSelected = true }) => (
 
 ## Credits
 The original virtual DOM algorithm was adapted from Leon Trolski's [33-line React](https://leontrolski.github.io/33-line-react.html).
+
+Like `umai`, `umhi` is heavily influenced by [Mithril.js](https://mithril.js.org).
