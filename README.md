@@ -59,6 +59,34 @@ const TextInput = () => (
 );
 ```
 
+Manual rerenders can be triggered with the `redraw` utility.
+
+```js
+import { m, redraw } from 'umhi';
+import { fetchUsers } from './api.js';
+
+const users = [];
+
+// some async operation
+fetchUsers()
+  .then(res => users = [...users, ...res])
+  .finally(redraw);
+
+const Users = () => (
+  m('div',
+    // this will display while `fetchUsers` is pending
+    !users.length && m('p', 'no users'),
+
+    // once the `.finally` handler is called, `redraw` will execute
+    // if users.length is truthy, it will render the list of users
+    users.length && users.map(user =>
+      m('p', user)
+    )
+  )
+);
+
+```
+
 If you'd like more fine-grained control over rerenders, `render` can be used in place of `mount`.
 
 ```js
