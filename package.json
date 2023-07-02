@@ -1,6 +1,6 @@
 {
   "name": "umhi",
-  "version": "0.2.1",
+  "version": "0.1.0",
   "license": "MIT",
   "repository": "https://github.com/kevinfiol/umhi",
   "type": "module",
@@ -12,12 +12,12 @@
   "terser": {
     "mangle": {
       "properties": {
-        "regex": "(instance|node|props)"
+        "regex": "(_cmp)"
       }
     }
   },
   "scripts": {
-    "test": "node test/esbuild.js && node test.js",
+    "test": "node test.js",
     "build": "bundt index.js",
     "prepare": "npm run build"
   },
