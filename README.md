@@ -159,6 +159,6 @@ const Book = ({ isSelected = true }) => (
 ```
 
 ## Credits
-The original virtual DOM algorithm was adapted from Leon Trolski's [33-line React](https://leontrolski.github.io/33-line-react.html).
+The original virtual DOM algorithm was adapted from Oliver Russell's [33-line React](https://leontrolski.github.io/33-line-react.html).
 
 Like `umai`, `umhi` is heavily influenced by [Mithril.js](https://mithril.js.org).
