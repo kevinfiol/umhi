@@ -3,12 +3,21 @@ let NIL = void 0,
   isArray = Array.isArray,
   isStr = x => typeof x === 'string',
   isFn = x => typeof x === 'function',
-  isObj = x => x !== null && typeof x === 'object',
-  createNode = v => document[v._cmp ? 'createElement' : 'createTextNode'](v.tag || v),
-  addChildren = (x, children) => {
-    if (isArray(x)) for (let i = 0; i < x.length; i++) addChildren(x[i], children);
-    else if (x != null && x !== false) children.push(x);
-  };
+  isObj = x => x !== null && typeof x === 'object';
+
+let createNode = v => document[v._cmp ? 'createElement' : 'createTextNode'](v.tag || v);
+
+let addChildren = (x, children) => {
+  if (isArray(x)) for (let i = 0; i < x.length; i++) addChildren(x[i], children);
+  else if (x != null && x !== false) children.push(x);
+};
+
+// https://github.com/ms-jpq/noact/blob/noact/src/noact.ts
+let styles = (obj) => {
+  let str = '';
+  for (let k in obj) str += k.replace(/[A-Z]/g, m => '-' + m.toLowerCase()) + ':' + obj[k] + ';';
+  return str;
+};
 
 let update = (node, v, redraw) => {
   if (!v._cmp)
@@ -24,8 +33,11 @@ let update = (node, v, redraw) => {
           (res = fn(ev)) instanceof Promise
             ? res.finally(_ => (redraw(), res = NIL))
             : (redraw(), res = NIL);
-      } else
+      } else {
+        if (i === 'style' && isObj(newProp))
+          newProp = styles(newProp);
         node[i] = newProp;
+      }
     } else if (!isFn(newProp) && node.getAttribute(i) != newProp) {
       if (newProp == null || newProp === false) node.removeAttribute(i);
       else node.setAttribute(i, newProp);
