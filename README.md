@@ -144,6 +144,26 @@ const UserPage = () => (
 );
 ```
 
+### Style Helper
+
+The `style` prop can be a [style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style#examples) attribute, or optionally, an object containing CSS style declarations. `umhi` will parse the style object and construct a string for you.
+
+```js
+// using a style attribute
+const Card = () => (
+  m('div', { style: 'background-color: green; border: 1px solid black;' },
+    '...'
+  )
+);
+
+// using a style object
+const Card = () => (
+  m('div', { style: { backgroundColor: 'green', border: '1px solid black' } },
+    '...'
+  )
+);
+```
+
 ### Class Helpers
 
 Like [umai](https://github.com/kevinfiol/umai#class-utilities), `umhi` features class string helpers, such as a class string builder and a hyperscript tag helper.

@@ -12,7 +12,6 @@ let addChildren = (x, children) => {
   else if (x != null && x !== false) children.push(x);
 };
 
-// https://github.com/ms-jpq/noact/blob/noact/src/noact.ts
 let styles = (obj) => {
   let str = '';
   for (let k in obj) str += k.replace(/[A-Z]/g, m => '-' + m.toLowerCase()) + ':' + obj[k] + ';';

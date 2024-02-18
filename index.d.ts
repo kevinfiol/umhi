@@ -1,19 +1,25 @@
-type UmhiNode = string | number | null | undefined;
+type UmhiNode = string | number | null | undefined | boolean;
 type ChildNode = UmhiNode | VNode;
 
-interface Props {
+type Props<T extends HTMLElement = HTMLElement> = Partial<Omit<T, "style" | "dataset" | "classList">> & {
   [propName: string]: unknown;
+  style?: Partial<CSSStyleDeclaration> | string;
+  dataset?: Record<string, string | number | boolean>;
+  txt?: string
 }
 
-interface VNode {
+type VNode = {
   _cmp?: number;
-  tag: string | Component | StatefulComponent;
+  tag: string;
   props?: Props;
   children?: ChildNode[];
 }
 
 /** Creates a virtual DOM node. Can be used to create HTML Element vnodes. **/
-export function m(tag: string, ...tail: (Props | UmhiNode)[]): VNode;
+export function m(tag: keyof HTMLElementTagNameMap, props: Props, ...tail: ChildNode[]): VNode;
+export function m(tag: string, props: Props, ...tail: ChildNode[]): VNode;
+export function m(tag: keyof HTMLElementTagNameMap, ...tail: ChildNode[]): VNode;
+export function m(tag: string, ...tail: ChildNode[]): VNode;
 
 /** Rerenders all currently mounted applications. **/
 export function redraw(): void;
