@@ -26,3 +26,6 @@ export function redraw(): void;
 
 /** Mounts a factory function on a given DOM Node. Returns redraw handler. **/
 export function mount(node: Node, root: () => VNode): () => void;
+
+/** Renders a factory function on a given DOM Node without redraw capabilities. **/
+export function mount(node: Node, root: () => VNode): void;

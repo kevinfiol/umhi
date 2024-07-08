@@ -1,7 +1,7 @@
 import { strict as assert } from 'node:assert';
 import { parseHTML } from 'linkedom';
 import { suite, run } from 'flitch';
-import { m, mount } from './index.js';
+import { m, mount, render } from './index.js';
 
 const test = suite('umhi tests');
 
@@ -11,7 +11,7 @@ const assertHtml = (a, b) => assert.equal(stripHtml(a), stripHtml(b));
 
 let init = false;
 
-function setup(view) {
+function setup(view, onlyRender = false) {
   if (!init) {
     global.window = window;
     global.document = window.document;
@@ -23,7 +23,7 @@ function setup(view) {
   window.document.body.innerHTML = '<div id="app"></div>';
 
   const root = document.getElementById('app');
-  const redraw = mount(root, view);
+  const redraw = onlyRender ? render(root, view) : mount(root, view);
   return { root, redraw, html: root.innerHTML };
 }
 
@@ -39,6 +39,14 @@ test('mount app', () => {
     '<p>hi</p>'
   );
 });
+
+test('render app', () => {
+  const App = () => m('p', 'hi');
+  const { html } = setup(App, true);
+  assert.equal(html,
+    '<p>hi</p>'
+  );
+})
 
 test('mounting nested elements', () => {
   const App = () => (

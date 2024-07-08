@@ -53,7 +53,7 @@ let update = (node, v, redraw) => {
 export function render(parent, cmp, redraw) {
   let i, tmp,
     olds = parent.childNodes || [],
-    children = cmp.children || [],
+    children = cmp.children || (isFn(cmp) ? cmp() : []),
     news = isArray(children) ? children : [children];
 
   for (i = 0, tmp = Array(Math.max(0, olds.length - news.length)); i < tmp.length; i++)
